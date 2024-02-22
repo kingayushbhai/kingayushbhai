@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone Paper Scissors Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <formate>
+    <h1>Stone Paper Scissors Game</h1>
+    <p>Choose your move:</p>
+    <br>
+    <p id="clickbutton"> click one of them</p>
+    <button onclick ="playGame('stone')"  id="one">Stone</button>
+    <button onclick="playGame('paper')" id="two">Paper</button>
+    <button onclick="playGame('scissors')" id="three">Scissors</button>
+    <p id="result"></p>
+</formate>
+
+    <script>
+        function computerMove() {
+            const moves = ['stone', 'paper', 'scissors'];
+            const randomIndex = Math.floor(Math.random() * moves.length);
+            return moves[randomIndex];
+        }
+
+        function playGame(userMove) {
+            const computer = computerMove();
+            let result;
+
+            if (userMove === computer) {
+                result = "It's a tie!";
+            } else if (
+                (userMove === 'stone' && computer === 'scissors') ||
+                (userMove === 'paper' && computer === 'stone') ||
+                (userMove === 'scissors' && computer === 'paper')
+            ) {
+                result = "You win!";
+            } else {
+                result = "You lose!";
+            }
+
+            document.getElementById('result').innerText = `You chose ${userMove}, the computer chose ${computer}. ${result}`;
+        }
+    </script>
+</body>
+</html>
